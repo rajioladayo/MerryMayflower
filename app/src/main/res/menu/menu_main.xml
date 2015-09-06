@@ -1,0 +1,52 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.rharj.merrymayflower.activities.BaseActivity">
+
+    <item
+        android:id="@+id/action_shares"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_share"
+        android:title="@string/menu_share"/>
+
+    <item
+        android:id="@+id/action_favorites"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_favorite"
+        android:title="@string/menu_favorites"/>
+
+    <item android:id="@+id/action_search"
+          app:showAsAction="ifRoom"
+          android:icon="@drawable/ic_action_search"
+          android:title="@string/menu_search"/>
+
+    <item
+        android:id="@+id/action_home"
+        app:showAsAction="never"
+        android:title="@string/menu_home"/>
+
+    <item
+        android:id="@+id/action_menu_favorites"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/menu_favorites"/>
+
+    <item
+        android:id="@+id/action_settings"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/menu_settings" />
+
+    <item
+        android:id="@+id/action_help"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_action_about"
+        android:title="@string/menu_help" />
+
+    <item
+        android:id="@+id/action_about"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_action_about"
+        android:title="@string/menu_about" />
+
+</menu>

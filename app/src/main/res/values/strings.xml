@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Merry Mayflower</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_hint">Search Title....</string>
+    <string name="search_favorite">Search Favorites....</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about">About</string>
+    <string name="menu">Menu</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_share">Share</string>
+    <string name="favorite_title">Favourite List</string>
+</resources>

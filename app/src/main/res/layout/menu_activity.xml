@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/size_five"
+        android:id="@+id/top_layout">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width = "fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/size_five">
+
+        <EditText
+            style="@style/FormInputField"
+            android:id="@+id/search_title"
+            android:hint="@string/search_hint"
+            android:inputType="text"
+            android:padding="@dimen/size_ten"
+            android:background="@drawable/rounded_edittext"
+            android:visibility="gone"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dividerHeight="1dp"
+            android:layout_below="@+id/search_title"
+            android:id="@+id/content_list"></ListView>
+
+    </LinearLayout>
+
+</LinearLayout>
