@@ -1,7 +1,7 @@
 package com.rharj.merrymayflower.model;
 
 /**
- * Created by Konga Tech on 2/4/2015.
+ * Created by Raji Oladayoon 2/4/2015.
  */
 public class XmlValueModels {
 
