@@ -6,12 +6,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import com.rharj.merrymayflower.R;
 //import com.rharj.merrymayflower.database.FavoriteDataSource;
+import com.rharj.merrymayflower.database.DatabaseHelper;
 import com.rharj.merrymayflower.model.Favorite;
 
 import java.util.List;
@@ -46,6 +48,7 @@ public class FavoriteActivity extends BaseActivity {
         getSupportActionBar().setTitle(R.string.favorite_title);
 
         initializeControls();
+        populateFavoriteList();
     }
 
     public void initializeControls(){
@@ -133,52 +136,22 @@ public class FavoriteActivity extends BaseActivity {
         startActivity(intent);
     }
 
-    /*public void populateFavoriteList(){
-
-        List<Favorite> values = datasource.getAllFavorites();
+    public void populateFavoriteList(){
+        DatabaseHelper databaseHelper = new DatabaseHelper(getBaseContext());
+        List<Favorite> values = databaseHelper.getAllFavorities();
 
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
         ArrayAdapter<Favorite> adapter = new ArrayAdapter<Favorite>(this,
                 android.R.layout.simple_list_item_1, values);
         listFavorite.setAdapter(adapter);
-    }*/
+        listFavorite.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-    // Will be called via the onClick attribute
-    // of the buttons in main.xml
-    /*public void onClick(View view) {
-        @SuppressWarnings("unchecked")
-        ArrayAdapter<Favorite> adapter = (ArrayAdapter<Favorite>) getListAdapter();
-        Favorite favorite = null;
-        switch (view.getId()) {
-            case R.id.add:
-                String[] comments = new String[] { "Cool", "Very nice", "Hate it" };
-                int nextInt = new Random().nextInt(3);
-                // save the new comment to the database
-                favorite = datasource.createFavorite(comments[nextInt]);
-                adapter.add(favorite);
-                break;
-            case R.id.delete:
-                if (getListAdapter().getCount() > 0) {
-                    favorite = (Favorite) getListAdapter().getItem(0);
-                    datasource.deleteFavorite(favorite);
-                    adapter.remove(favorite);
-                }
-                break;
-        }
-        adapter.notifyDataSetChanged();
+
+            }
+        });
     }
-
-    @Override
-    protected void onResume() {
-        datasource.open();
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        datasource.close();
-        super.onPause();
-    }*/
 
 }

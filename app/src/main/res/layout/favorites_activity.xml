@@ -23,7 +23,7 @@
         android:orientation="vertical"
         android:padding="@dimen/size_five">
 
-        <EditText
+        <com.rharj.merrymayflower.widget.CustomEditText
             style="@style/FormInputField"
             android:background="@drawable/rounded_edittext"
             android:id="@+id/search_favorites"

@@ -23,6 +23,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/merrymayflowerMenu</item>
+    </style>
+
+    <style name="merrymayflowerMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/textColorPrimary</item>
     </style>
 
 </resources>

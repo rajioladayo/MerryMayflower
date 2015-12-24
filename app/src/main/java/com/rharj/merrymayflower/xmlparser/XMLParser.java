@@ -1,10 +1,12 @@
 package com.rharj.merrymayflower.xmlparser;
 
+
 import org.xml.sax.helpers.DefaultHandler;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -84,5 +86,29 @@ public class XMLParser extends DefaultHandler {
 
         return xmlModel;
     }
+
+   /* public void search(String filename) throws Exception {
+        // Parse into a DOM tree
+        File file = new File(filename);
+        DOMParser parser = new DOMParser();
+        parser.parse(file.toURL().toString());
+        Document doc = parser.getDocument();
+
+        // Get node to start iterating with
+        Element root = doc.getDocumentElement();
+        NodeList descriptionElements =
+                root.getElementsByTagNameNS(docNS, "description");
+        Element description = (Element)descriptionElements.item(0);
+
+        // Get a NodeIterator
+        NodeIterator i = ((DocumentTraversal)doc)
+                .createNodeIterator(description, NodeFilter.SHOW_ALL,
+                        new FormattingNodeFilter(), true);
+
+        Node n;
+        while ((n = i.nextNode()) != null) {
+            System.out.println("Search phrase found: '" + n.getNodeValue() + "'");
+        }
+    }*/
 
 }

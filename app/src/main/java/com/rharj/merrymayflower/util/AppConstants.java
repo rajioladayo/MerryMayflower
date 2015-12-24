@@ -13,7 +13,7 @@ public class AppConstants {
     public static final String DATABASE_NAME = "FavoriteList";
 
     // Table names.
-    public static final String TABLE_FAVORITE = "favorties";
+    public static final String TABLE_FAVORITE = "favourites";
 
 
     public static final String FAVORITE_ID = "favourite_id";
@@ -22,7 +22,7 @@ public class AppConstants {
 
 
     // Command to create a table of clients.
-    public static final String CREATE_CUSTOMER_TABLE = "CREATE TABLE " + TABLE_FAVORITE + " ("
+    public static final String CREATE_CUSTOMER_TABLE = "CREATE TABLE " + TABLE_FAVORITE + "("
             + FAVORITE_ID + " TEXT,"
-            + FAVORITE_TITLE + "TEXT)";
+            + FAVORITE_TITLE + " TEXT" + ")";
 }

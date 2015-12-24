@@ -31,9 +31,7 @@ public class MenuActivity extends BaseActivity {
     private EditText searchText;
     List<XmlValueModels> xModels = null;
     ContentAdapter adapter;
-    private String title;
-    private String contentDetails;
-    String contentAuthor;
+    private String title,contentDetails,hymmId,contentAuthor;
     private boolean ToggleSearch = false;
     private Toolbar mToolBar;
     private Menu myMenu = null;
@@ -138,9 +136,11 @@ public class MenuActivity extends BaseActivity {
                     title = details.getTitle();
                     contentDetails = details.getDetails();
                     contentAuthor = details.getAuthor();
+                    hymmId = details.getId();
                     intent.putExtra("title", title);
                     intent.putExtra("details",contentDetails);
                     intent.putExtra("author",contentAuthor);
+                    intent.putExtra("hymmId",hymmId);
                     startActivity(intent);
 
 

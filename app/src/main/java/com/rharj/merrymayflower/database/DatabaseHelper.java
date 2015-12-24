@@ -18,12 +18,9 @@ import java.util.List;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-
-    // Context in which this database exists.
-    private Context mContext;
-
     private List<Favorite> listFavorite;
     private Cursor cursor;
+    private SQLiteDatabase database;
 
     // Database lock to prevent conflicts.
     public static final Object[] databaseLock = new Object[0];
@@ -53,20 +50,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Lock database for writing
         synchronized (databaseLock) {
             //Get a writable database
-            SQLiteDatabase database = getWritableDatabase();
+            database = getWritableDatabase();
 
             //Ensure the database exists
             if (database != null) {
                 //Prepare the customer information that will be saved to the database
                 ContentValues values = new ContentValues();
-                values.put(AppConstants.FAVORITE_ID, favorite.getId());
+
                 values.put(AppConstants.FAVORITE_TITLE, favorite.getTitle());
+                values.put(AppConstants.FAVORITE_ID, favorite.getId());
 
                 //Attempt to insert the client information into the transaction table
                 try {
                     ret = database.insert(AppConstants.TABLE_FAVORITE, null, values);
                 } catch (Exception e) {
-                    Log.e(TAG, "Unable to favorite to databse " + e.getMessage());
+                    Log.e(TAG, "Unable to favorite to database " + e.getMessage());
                 }
                 //Close database connection
                 database.close();
@@ -81,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Lock database for writing
         synchronized (databaseLock) {
             //Get a writable database
-            SQLiteDatabase database = getWritableDatabase();
+           database = getWritableDatabase();
 
             //Ensure the database exists
             if (database != null) {
@@ -105,20 +103,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Lock database for writing
         synchronized (databaseLock) {
             //Get a writable database
-            SQLiteDatabase database = getReadableDatabase();
+            database = getReadableDatabase();
 
             //Ensure the database exists
             if (database != null) {
 
                 //Attempt to delete information into the favorite table
                 try {
-                    cursor = database.query(true, AppConstants.TABLE_FAVORITE, new String[] {
-                                    AppConstants.FAVORITE_ID, AppConstants.FAVORITE_TITLE},null,null,null, null, null , null);
+                    cursor = database.query(true, AppConstants.TABLE_FAVORITE, new String[]{
+                            AppConstants.FAVORITE_ID, AppConstants.FAVORITE_TITLE}, null, null, null, null, null, null);
 
                     if (cursor.moveToFirst()) {
                         do {
                             Favorite favorite = new Favorite();
-                            favorite.setId(cursor.getLong(cursor.getColumnIndexOrThrow(AppConstants.FAVORITE_ID)));
+                            favorite.setId(cursor.getString(cursor.getColumnIndexOrThrow(AppConstants.FAVORITE_ID)));
                             favorite.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(AppConstants.FAVORITE_TITLE)));
                             listFavorite.add(favorite);
                         } while (cursor.moveToNext());
@@ -135,6 +133,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return listFavorite;
+    }
+
+    public boolean hymmExist(String hymmId){
+        synchronized (databaseLock){
+            database = getReadableDatabase();
+            if(database != null){
+                try{
+                    cursor = database.query(AppConstants.TABLE_FAVORITE,new String[]{AppConstants.FAVORITE_ID},
+                            AppConstants.FAVORITE_ID + "=?", new String[]{hymmId},
+                            null,null,null);
+                    if(cursor.getCount() <= 0){
+                        cursor.close();
+                        return false;
+                    }else{
+                        cursor.close();
+                        return true;
+                    }
+
+                }catch(Exception e){
+                    Log.e(TAG,"Unable to query the database" + e.getMessage());
+                }
+
+                database.close();
+            }
+        }
+        return false;
     }
 
 }
