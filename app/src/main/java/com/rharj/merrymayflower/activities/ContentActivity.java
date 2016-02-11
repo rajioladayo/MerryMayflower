@@ -106,10 +106,10 @@ public class ContentActivity extends BaseActivity {
 
     public void loadContentsFromIntent(){
 
-        details = (String) this.getIntent().getExtras().getString("details");
-        title = (String) this.getIntent().getExtras().getString("title");
-        author = (String) this.getIntent().getExtras().getString("author");
-        hymmId = (String) this.getIntent().getExtras().getString("hymmId");
+        details = this.getIntent().getExtras().getString("details");
+        title =   this.getIntent().getExtras().getString("title");
+        author =  this.getIntent().getExtras().getString("author");
+        hymmId =  this.getIntent().getExtras().getString("hymmId");
 
     }
 
@@ -129,7 +129,7 @@ public class ContentActivity extends BaseActivity {
     }
 
     private void addHymmToFavorite(){
-        final DatabaseHelper databaseHelper = new DatabaseHelper(getBaseContext());
+        final DatabaseHelper  databaseHelper = new DatabaseHelper(getBaseContext());
         final Favorite favorite  = new Favorite();
         if(databaseHelper.hymmExist(hymmId)){
             //Ask to remove hymm from the list

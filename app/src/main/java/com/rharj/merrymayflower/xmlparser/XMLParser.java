@@ -1,6 +1,9 @@
 package com.rharj.merrymayflower.xmlparser;
 
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.helpers.DefaultHandler;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -14,8 +17,15 @@ import java.util.List;
 
 import com.rharj.merrymayflower.model.XmlValueModels;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathFactory;
+
 /**
- * Created by Konga Tech on 2/4/2015.
+ * Created by Raji Oladayo on 2/4/2015.
  */
 public class XMLParser extends DefaultHandler {
 
@@ -87,28 +97,24 @@ public class XMLParser extends DefaultHandler {
         return xmlModel;
     }
 
-   /* public void search(String filename) throws Exception {
+    public void search(String filename, String id) throws Exception {
         // Parse into a DOM tree
-        File file = new File(filename);
-        DOMParser parser = new DOMParser();
-        parser.parse(file.toURL().toString());
-        Document doc = parser.getDocument();
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = builder.parse(filename);
+        XPathFactory xPathFactory = XPathFactory.newInstance();
+        XPath xPath = xPathFactory.newXPath();
 
-        // Get node to start iterating with
-        Element root = doc.getDocumentElement();
-        NodeList descriptionElements =
-                root.getElementsByTagNameNS(docNS, "description");
-        Element description = (Element)descriptionElements.item(0);
-
-        // Get a NodeIterator
-        NodeIterator i = ((DocumentTraversal)doc)
-                .createNodeIterator(description, NodeFilter.SHOW_ALL,
-                        new FormattingNodeFilter(), true);
-
-        Node n;
-        while ((n = i.nextNode()) != null) {
-            System.out.println("Search phrase found: '" + n.getNodeValue() + "'");
+        XPathExpression expr = xPath.compile("/contents/item/id[text() = '" + id + "']");
+        NodeList nodeList = (NodeList) (expr.evaluate(doc, XPathConstants.NODESET));
+        if(nodeList.getLength() == 1){
+            // we have found an element 'id'
+            Node parent = nodeList.item(0).getParentNode();
+            //This is the <item> node
+        }else{
+            //there is no such element
         }
-    }*/
+        
+    }
 
 }

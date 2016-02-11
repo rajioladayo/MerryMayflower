@@ -18,20 +18,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
+        android:paddingTop="@dimen/val_20dp"
         android:layout_below="@+id/top_layout">
-
-        <!--<com.rharj.merrymayflower.custom.JustifiedTextView
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/content_details"
-            android:lineSpacingMultiplier="1.5"
-            android:lineSpacingExtra="3dp"
-            android:textSize="20sp"
-            />-->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:textColor="@color/navigationBarColor"
             android:id="@+id/content_details"
             android:textSize="20sp"/>
 
@@ -42,6 +37,7 @@
         android:id="@+id/authors"
         android:padding="10dp"
         android:layout_alignParentBottom="true"
+        android:textColor="@color/navigationBarColor"
         android:textSize="@dimen/size_fourteen"
         android:layout_gravity="center_vertical"
         android:textStyle="bold"/>

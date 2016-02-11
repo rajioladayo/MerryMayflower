@@ -142,13 +142,15 @@ public class FavoriteActivity extends BaseActivity {
 
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
-        ArrayAdapter<Favorite> adapter = new ArrayAdapter<Favorite>(this,
+        final ArrayAdapter<Favorite> adapter = new ArrayAdapter<Favorite>(this,
                 android.R.layout.simple_list_item_1, values);
         listFavorite.setAdapter(adapter);
         listFavorite.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                String itemId = adapter.getItem(position).toString();
+                intent = new Intent(getBaseContext(), ContentActivity.class);
+                finish();
 
             }
         });
