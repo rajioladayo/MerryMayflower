@@ -15,11 +15,11 @@ public class BoldCustomTextView extends TextView {
 
     public BoldCustomTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        CustomFontHelper.setCustomFont(this, "fonts/Roboto-Bold.ttf", context);
+        CustomFontHelper.setCustomFont(this, "fonts/Roboto-Medium.ttf", context);
     }
 
     public BoldCustomTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        CustomFontHelper.setCustomFont(this, "fonts/Roboto-Bold.ttf", context);
+        CustomFontHelper.setCustomFont(this, "fonts/Roboto-Medium.ttf", context);
     }
 }

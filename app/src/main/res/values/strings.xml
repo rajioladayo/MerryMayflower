@@ -14,5 +14,12 @@
     <string name="menu_search">Search</string>
     <string name="menu_share">Share</string>
     <string name="favorite_title">Favourite List</string>
-    <string name="about_title">About- Mayflowwer Hymn Book</string>
+    <string name="about_title">About- Mayflower Hymn Book</string>
+
+    <!-- FONTS -->
+    <string name="roboto_thin">fonts/Roboto-Thin.ttf</string>
+    <string name="roboto_medium">fonts/Roboto-Medium.ttf</string>
+    <string name="roboto_bold">fonts/Roboto-Bold.ttf</string>
+    <string name="roboto_light">fonts/Roboto-Light.ttf</string>
+    <string name="roboto_regular">fonts/Roboto-Regular.ttf</string>
 </resources>

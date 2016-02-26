@@ -19,13 +19,6 @@ public class MyAlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        /*Uri alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if(alarmUri == null){
-            alarmUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        }
-        Ringtone ringtone = RingtoneManager.getRingtone(context,alarmUri);
-        ringtone.play();*/
-
         Intent myIntent = new Intent(context, AlarmService.class);
         context.startService(myIntent);
     }
