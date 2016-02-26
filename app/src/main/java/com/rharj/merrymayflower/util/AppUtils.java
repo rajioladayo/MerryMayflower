@@ -1,21 +1,28 @@
-package com.rharj.merrymayflower.alarm;
+package com.rharj.merrymayflower.util;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-
-import com.rharj.merrymayflower.activities.ContentActivity;
+import com.rharj.merrymayflower.alarm.MyAlarmReceiver;
 
 import java.util.Calendar;
+import java.util.Random;
 
 /**
  * Created by Raji Oladayo on 11/02/16.
  */
-public class MyAlarm {
+public class AppUtils {
 
-    public void setAlarm(Context context){
-        Intent intent = new Intent(context, ContentActivity.class);
+    public static String getRandomNumber(int[] array){
+        int random = new Random().nextInt(array.length);
+        return String.valueOf(array[random]);
+    }
+
+
+    public static void setAlarm(Context context){
+        Intent intent = new Intent(context, MyAlarmReceiver.class);
         PendingIntent pIntent = PendingIntent.getBroadcast(context,0,intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
@@ -25,9 +32,8 @@ public class MyAlarm {
         calendar.set(Calendar.HOUR_OF_DAY, 10);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
-
-        // for repeating in every 24 hours
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 86400000,pIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 86400000, pIntent);
 
     }
+
 }

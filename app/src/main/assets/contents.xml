@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <contents>
-        <item>
-            <id>1</id>
+        <item id="1">
             <title>National Anthem</title>
             <details>
                 <![CDATA[Arise, O compatriots,<br/>
@@ -18,8 +17,7 @@
                 John A.llechukwu, Eme Etim Akpan, B.A Ogunnaike, Sota Omoigui and P.O Aderibigbe
             </author>
         </item>
-        <item>
-            <id>1</id>
+        <item id="2">
             <title>Bantu</title>
             <details>
                 <![CDATA[Arise, O compatriots,<br/>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.rharj.merrymayflower.custom.JustifiedTextView;
 import com.rharj.merrymayflower.R;
 import com.rharj.merrymayflower.database.DatabaseHelper;
 import com.rharj.merrymayflower.model.Favorite;
+import com.rharj.merrymayflower.util.AppUtils;
 
 /**
  * Created by Raji Oladayo on 2/14/15.
@@ -177,5 +179,4 @@ public class ContentActivity extends BaseActivity {
             dialogs.show();
         }
     }
-
 }

@@ -2,6 +2,7 @@ package com.rharj.merrymayflower.xmlparser;
 
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.helpers.DefaultHandler;
@@ -71,8 +72,6 @@ public class XMLParser extends DefaultHandler {
                         if (tagname.equalsIgnoreCase("item")) {
                             // add employee object to list
                             xmlModel.add(xModel);
-                        } else if (tagname.equalsIgnoreCase("id")) {
-                            xModel.setId(text);
                         } else if (tagname.equalsIgnoreCase("title")) {
                             xModel.setTitle(text);
                         } else if (tagname.equalsIgnoreCase("details")) {
@@ -97,24 +96,29 @@ public class XMLParser extends DefaultHandler {
         return xmlModel;
     }
 
-    public void search(String filename, String id) throws Exception {
-        // Parse into a DOM tree
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = factory.newDocumentBuilder();
-        Document doc = builder.parse(filename);
-        XPathFactory xPathFactory = XPathFactory.newInstance();
-        XPath xPath = xPathFactory.newXPath();
-
-        XPathExpression expr = xPath.compile("/contents/item/id[text() = '" + id + "']");
-        NodeList nodeList = (NodeList) (expr.evaluate(doc, XPathConstants.NODESET));
-        if(nodeList.getLength() == 1){
-            // we have found an element 'id'
-            Node parent = nodeList.item(0).getParentNode();
-            //This is the <item> node
-        }else{
-            //there is no such element
+    public static XmlValueModels search(InputStream inputStream, String id){
+        XmlValueModels xmlValueModels = null;
+        try{
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(inputStream);
+            XPath xPath = XPathFactory.newInstance().newXPath();
+            String expression = "/contents/item[@id='" + id + "']";
+            NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc,XPathConstants.NODESET);// (expr.evaluate(doc, XPathConstants.NODE));
+            for(int i= 0; i<nodeList.getLength(); i++){
+                Node node = nodeList.item(i);
+                if(node.getNodeType() == Node.ELEMENT_NODE){
+                    Element element = (Element)node;
+                    xmlValueModels = new XmlValueModels();
+                    xmlValueModels.setTitle(element.getElementsByTagName("title").item(0).getTextContent());
+                    xmlValueModels.setDetails(element.getElementsByTagName("details").item(0).getTextContent());
+                    xmlValueModels.setAuthor(element.getElementsByTagName("author").item(0).getTextContent());
+                    xmlValueModels.setId(element.getAttribute("id"));
+                }
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
-        
+        return xmlValueModels;
     }
-
 }
